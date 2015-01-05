@@ -7,8 +7,28 @@ sentence = sentence.split(" ")
 end
 
 def translateWord word
-	vowels = ['a','e','i','u','y']
-	consonants = ['b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z',]
+	capitalized = (word.capitalize == word)
+	vowels = ['A','E','I','U','Y','a','e','i','u','y']
+	consonants = ['B','C','D','F','G','H','J','K','L','M','N','P','Q','R','S','T','V','W','X','Z','b','c','d','f','g','h','j','k','l','m','n','p','q','r','s','t','v','w','x','z',]
+	if capitalized
+		word = word.downcase
+	end
+	if word[0..2].include? "qu"
+		if word[0..1].include? "qu"
+			word << word[0..1]
+			word[0..1] = ""
+			word << "ay"
+			return word
+		else
+			if consonants.any? {|consonant| consonant == word[0]}
+				word << word[0..2]
+				word[0..2] = ""
+				word << "ay"
+				return word	
+			end
+		end
+	end	
+	
 	if consonants.any? {|consonant| consonant  == word[0]}
 		if consonants.any? {|consonant| consonant == word[1]}	
 			if consonants.any? {|consonant| consonant == word[2]}
@@ -22,6 +42,9 @@ def translateWord word
 			word << word[0]
 			word[0] = ""
 		end
+	end
+	if capitalized
+		word = word.capitalize
 	end
 	word << "ay"
 end
