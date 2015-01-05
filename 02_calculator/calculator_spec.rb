@@ -79,21 +79,46 @@ end
 
 describe "#multiply" do
 
-  it "multiplies two numbers"
-
-  it "multiplies several numbers"
-
+  it "multiplies two numbers" do
+	multiply(3,5).should == 15
+	multiply(6,10).should == 60
+  end
+  
+	it "multiplies several numbers" do
+		multiply(multiply(3,5),multiply(2,1)).should == 30
+		multiply(multiply(-2,0),multiply(3,2)).should == 0
+	end
 end
 
 describe "#power" do
-  it "raises one number to the power of another number"
+  context "raises one number to the power of another number" do
+	it "takes power of two positive numbers" do
+		power(2,3).should == 8
+	end	
+	it "takes the power of one to a number" do
+		power(1,4).should == 1
+	end	
+	it "takes a negative number to a positive number" do
+		power(-2,3).should == -8
+	end 
+ end	
 end
 
 # http://en.wikipedia.org/wiki/Factorial
 describe "#factorial" do
-  it "computes the factorial of 0"
-  it "computes the factorial of 1"
-  it "computes the factorial of 2"
-  it "computes the factorial of 5"
-  it "computes the factorial of 10"
+  it "computes the factorial of 0" do
+	expect(factorial(0)).to equal(1)
+  end
+  it "computes the factorial of 1" do
+	expect(factorial(1)).to equal(1)
+  end
+  it "computes the factorial of 2" do
+	expect(factorial(2)).to equal(2)
+  end
+  it "computes the factorial of 5" do
+	expect(factorial(5)).to equal(120)
+  end
+  it "computes the factorial of 10" do
+	expect(factorial(10)).to equal(3628800)
+  end
 end
