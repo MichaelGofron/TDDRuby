@@ -20,7 +20,7 @@ end
 
 # exceptions == the, and, over
 def titleize(s)
-	s = s.split.map {|x| ((x != "the") && (x != "and") && (x != "over")) ?
+	title = s.capitalize
+	title = title.split.map {|x| ((x != "the") && (x != "and") && (x != "over")) ?
 			x.capitalize : x}.join(" ")
-	s.capitalize # make sure first word is capitalized
 end
